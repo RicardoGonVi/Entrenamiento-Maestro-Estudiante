@@ -28,7 +28,7 @@ while True:
         break
     
     # Si ha pasado suficiente tiempo desde el último frame comparado
-    if count % (fps/desiredfps) == 0:
+    if count % (fps/desiredfps) == 0 and count != 0:
 
         # Convirtiendo las imgs a escala de grises
         gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
@@ -44,8 +44,8 @@ while True:
         #cv2.imshow('Difference', diff)
 
         # Wait for a key press
-        if cv2.waitKey(1) == ord('q'):
-            break
+        #if cv2.waitKey(1) == ord('q'):
+        #    break
 
         # Contador de pixeles iguales
         pixeles_negros = gray1.size - cv2.countNonZero(diff)
