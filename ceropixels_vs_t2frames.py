@@ -1,13 +1,13 @@
 import cv2
 
 # Nombre del archivo de video
-filevideo = "D:/TRABAJOS RICARDO/Semestre_13/PFG/Repositorio/Mingle/downsample/30min_day1_cam1_20fps_960x540.mp4"
+video_file = "D:/TRABAJOS RICARDO/Semestre_13/PFG/Repositorio/Mingle/downsample/30min_day1_cam1_20fps_960x540.mp4"
 
 # Genera un archivo con los % de diferencia entre dos framse de un video
 def ceropixels_vs_t2frames(desiredfps, thvalue):
 
     # Cargando el archivo
-    cap = cv2.VideoCapture(filevideo)
+    cap = cv2.VideoCapture(video_file)
 
     # Obtiene el número de frames por segundo del video
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -19,7 +19,7 @@ def ceropixels_vs_t2frames(desiredfps, thvalue):
     count = 0
 
     # Archivo donde se guardan los resultados
-    fileresults = "Diff2frames/Prueba" + str(fps/desiredfps) + "fps" + str(thvalue) + "th.csv"
+    results_file = "Diff2frames/Prueba" + str(fps/desiredfps) + "fps" + str(thvalue) + "th.csv"
 
     # Loop del video
     while True:
@@ -55,7 +55,7 @@ def ceropixels_vs_t2frames(desiredfps, thvalue):
             percentage = float(pixeles_negros/gray1.size*100)
 
             # Save the number of zero pixels to a CSV file
-            with open(fileresults, 'a') as f:
+            with open(results_file, 'a') as f:
                 f.write(str(percentage) + '\n')
 
             # Set frame2 as the new frame1
@@ -69,12 +69,13 @@ def ceropixels_vs_t2frames(desiredfps, thvalue):
     print("Píxeles x frame: ", gray1.size)
     cv2.destroyAllWindows()
 
-
+# Listas con valores a hacer puebas
 #desiredfps_list = [20, 10, 5, 1]
 thvalue_list = [0, 1, 25, 127]
-desiredfps_list = [40, 80, 160, 320]
+desiredfps_list = [10]
 combination_list = []
 
+# Generando todas las posibles combinaciones
 for nFPS in desiredfps_list:
     for nTH in thvalue_list:
         ceropixels_vs_t2frames(nFPS, nTH)
