@@ -3,7 +3,7 @@ import os
 
 # Nombre del archivo de video
 filename = "D:/TRABAJOS RICARDO/Semestre_13/PFG/Repositorio/Mingle/downsample/30min_day1_cam1_20fps_960x540.mp4"
-filename = "C:/Users/ragv1/OneDrive/Escritorio/video_cam3_22-02-2023 11_42_01.avi"
+
 
 
 
@@ -11,7 +11,7 @@ filename = "C:/Users/ragv1/OneDrive/Escritorio/video_cam3_22-02-2023 11_42_01.av
 dirname = 'Frames'
 
 # Saltos entre frames
-framejump = 1
+framejump = 20
 
 # Crea el directorio si aún no existe
 if not os.path.exists(dirname):
@@ -36,7 +36,7 @@ while success:
     if count % (framejump) == 0:
 
         # Guarda el frame actual como imagen
-        cv2.imwrite(os.path.join(dirname, 'frame{:04d}.jpg'.format(count)), frame)
+        cv2.imwrite(os.path.join(dirname, 'frame{:05d}.png'.format(count)), frame)
 
     # Incrementa el contador
     count += 1
