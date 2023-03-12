@@ -49,10 +49,8 @@ def grafic(dir_path, th_value):
                     average_list.append(np.mean(first_col))
                     std_dev_list.append(np.std(first_col))
 
-    fps_list.sort()
-    average_list.sort(reverse=True)
     # Plot the results
-    plt.plot(fps_list, average_list, "-o", label = "Threshold: " + str(th_value))
+    plt.plot(fps_list.sort(), average_list.sort(reverse=True), "-o", label = "Threshold: " + str(th_value))
     plt.xlabel("Segundos (s)")
     plt.ylabel("Promedio de píxeles sin variar (%)")
     plt.legend()
@@ -63,7 +61,7 @@ def grafic(dir_path, th_value):
 
 
 # Setea el directorio
-directory_path = "D:/TRABAJOS RICARDO/Semestre_13/PFG/Github/Entrenamiento-Maestro-Estudiante/Diff2frames/"
+directory_path = "D:/TRABAJOS RICARDO/Semestre_13/PFG/Github/Entrenamiento-Maestro-Estudiante/Acondicionamiento imagenes/Diff2frames/"
 
 # Lista de posibles th
 th_list = [0,1,25,127]
